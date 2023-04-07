@@ -24,6 +24,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Build
+      run: dotnet publish --configuration release --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
 
@@ -33,7 +35,7 @@ jobs:
         name: debug-build
         path: /home/runner/work/azure-documentdb-datamigrationtool/azure-documentdb-datamigrationtool/Core/Microsoft.DataTransfer.Core/bin/Debug/net6.0 #path/to/artifact/ # or path/to/artifact  
 
-    - name: RElease Build Artifact
+    - name: Release Build Artifact
       uses: actions/upload-artifact@v3
       with:
         name: release-build
