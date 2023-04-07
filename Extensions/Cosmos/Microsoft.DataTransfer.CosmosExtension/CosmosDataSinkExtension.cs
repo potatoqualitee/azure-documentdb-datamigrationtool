@@ -18,7 +18,7 @@ namespace Microsoft.DataTransfer.CosmosExtension
         {
             var settings = config.Get<CosmosSinkSettings>();
             settings.Validate();
-
+            Console.WriteLine($"Writing to {settings.ConnectionString} in {settings.Database}/{settings.Container} with {settings.BatchSize} batch size");
             var client = new CosmosClient(settings.ConnectionString,
                 new CosmosClientOptions
                 {
