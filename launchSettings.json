@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandLineArgs": "--source json --sink cosmos --SourceSettingsPath=c:\\temp\\JsonSourceSettings.json --SinkSettingsPath=c:\\temp\\CosmosSinkSettings.json",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "microsoft.datatransfer.core": "StartDebugging"
+      }
+    }
+  }
+}

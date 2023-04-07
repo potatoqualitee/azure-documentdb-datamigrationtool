@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  microsoft.datatransfer.core:
+    hostname: dev
+    depends_on:
+      - cosmos
+    command: >
+        chmod +x /tmp/fix-cert.sh
+        /tmp/fix-cert.sh
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      - ./scripts/fix-cert.sh:/tmp/fix-cert.sh
+
+  cosmos:
+    container_name: cosmos
+    hostname: cosmos
+    restart: on-failure
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:latest
+    mem_limit: 3g
+    cpu_count: 2
+    environment:
+        AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 11
+        AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: "true"
+    ports:
+      - "8081:8081"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker-host.sock

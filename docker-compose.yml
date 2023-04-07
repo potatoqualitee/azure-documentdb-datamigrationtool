@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  microsoft.datatransfer.core:
+    image: ${DOCKER_REGISTRY-}microsoftdatatransfercore
+    build:
+      context: .
+      dockerfile: Core/Microsoft.DataTransfer.Core/Dockerfile
